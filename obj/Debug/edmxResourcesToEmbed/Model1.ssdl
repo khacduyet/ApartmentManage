@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApartmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblApartment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="apartId" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="price" Type="float" />
+    <Property Name="area" Type="float" />
+    <Property Name="note" Type="nvarchar" MaxLength="100" />
+    <Property Name="image" Type="text" />
+    <Property Name="status" Type="bit" />
+    <Property Name="familyId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblContract">
+    <Key>
+      <PropertyRef Name="contractId" />
+    </Key>
+    <Property Name="contractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contractName" Type="nvarchar" MaxLength="100" />
+    <Property Name="contractType" Type="nvarchar" MaxLength="100" />
+    <Property Name="apartId" Type="int" />
+    <Property Name="familyId" Type="int" />
+    <Property Name="empId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblContractDetail">
+    <Key>
+      <PropertyRef Name="contDetailId" />
+    </Key>
+    <Property Name="contDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contractId" Type="int" />
+    <Property Name="limitation" Type="nvarchar" MaxLength="50" />
+    <Property Name="signDay" Type="date" />
+    <Property Name="content" Type="text" />
+    <Property Name="image" Type="text" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="empId" />
+    </Key>
+    <Property Name="empId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empName" Type="nvarchar" MaxLength="100" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="varchar" MaxLength="12" />
+    <Property Name="dob" Type="date" />
+    <Property Name="email" Type="varchar" MaxLength="200" />
+    <Property Name="identityNumber" Type="varchar" MaxLength="20" />
+    <Property Name="departmentId" Type="int" />
+    <Property Name="image" Type="text" />
+  </EntityType>
+  <EntityType Name="tblFamily">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="familyId" Type="varchar" MaxLength="20" />
+    <Property Name="familyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="numberMember" Type="int" />
+  </EntityType>
+  <EntityType Name="tblMember">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="memberId" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="email" Type="nvarchar" MaxLength="200" />
+    <Property Name="identityNumber" Type="varchar" MaxLength="20" />
+    <Property Name="image" Type="text" />
+    <Property Name="dob" Type="date" />
+    <Property Name="phone" Type="varchar" MaxLength="12" />
+    <Property Name="familyId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblPermission">
+    <Key>
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="permissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permissionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="permissionAccess" Type="text" />
+  </EntityType>
+  <EntityType Name="tblPerRelationship">
+    <Key>
+      <PropertyRef Name="idRel" />
+    </Key>
+    <Property Name="idRel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUserRel" Type="int" />
+    <Property Name="idPerRel" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uuid" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="pwd" Type="nvarchar" MaxLength="100" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <Association Name="FK__tblApartm__famil__2610A626">
+    <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+    <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblApartment">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__empId__1F63A897">
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="empId" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="empId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__famil__1E6F845E">
+    <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__image__22401542">
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="0..1" />
+    <End Role="tblContractDetail" Type="Self.tblContractDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblContract">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="tblContractDetail">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblMember__famil__12FDD1B2">
+    <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+    <End Role="tblMember" Type="Self.tblMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblMember">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPerRel__idPer__1BC821DD">
+    <End Role="tblPermission" Type="Self.tblPermission" Multiplicity="0..1" />
+    <End Role="tblPerRelationship" Type="Self.tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPermission">
+        <PropertyRef Name="permissionId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idPerRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPerRel__idUse__1AD3FDA4">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblPerRelationship" Type="Self.tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idUserRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="deleteApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="empId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getAparment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getApart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getMaxIdEmp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uuid" Type="nvarchar" Mode="In" />
+    <Parameter Name="pwd" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insertApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="apartId" Type="varchar" Mode="In" />
+    <Parameter Name="price" Type="float" Mode="In" />
+    <Parameter Name="area" Type="float" Mode="In" />
+    <Parameter Name="note" Type="nvarchar" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+    <Parameter Name="status" Type="bit" Mode="In" />
+    <Parameter Name="familyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="insertEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="empName" Type="nvarchar" Mode="In" />
+    <Parameter Name="gender" Type="bit" Mode="In" />
+    <Parameter Name="address" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="dob" Type="date" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+    <Parameter Name="departmentId" Type="int" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+  </Function>
+  <Function Name="insertFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="familyId" Type="varchar" Mode="In" />
+    <Parameter Name="familyName" Type="nvarchar" Mode="In" />
+    <Parameter Name="numberMember" Type="int" Mode="In" />
+  </Function>
+  <Function Name="insertMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="memberId" Type="nvarchar" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="gender" Type="bit" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+    <Parameter Name="dob" Type="date" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="familyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="searchFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="apartId" Type="varchar" Mode="In" />
+    <Parameter Name="price" Type="float" Mode="In" />
+    <Parameter Name="area" Type="float" Mode="In" />
+    <Parameter Name="note" Type="nvarchar" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+    <Parameter Name="status" Type="bit" Mode="In" />
+    <Parameter Name="familyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="empId" Type="int" Mode="In" />
+    <Parameter Name="empName" Type="nvarchar" Mode="In" />
+    <Parameter Name="gender" Type="bit" Mode="In" />
+    <Parameter Name="address" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="dob" Type="date" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+    <Parameter Name="departmentId" Type="int" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+  </Function>
+  <Function Name="updateFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="familyId" Type="varchar" Mode="In" />
+    <Parameter Name="familyName" Type="nvarchar" Mode="In" />
+    <Parameter Name="numberMember" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="memberId" Type="nvarchar" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="gender" Type="bit" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+    <Parameter Name="image" Type="text" Mode="In" />
+    <Parameter Name="dob" Type="date" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="familyId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ApartmentModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblApartment" EntityType="Self.tblApartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContract" EntityType="Self.tblContract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContractDetail" EntityType="Self.tblContractDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFamily" EntityType="Self.tblFamily" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMember" EntityType="Self.tblMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPermission" EntityType="Self.tblPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerRelationship" EntityType="Self.tblPerRelationship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblApartm__famil__2610A626" Association="Self.FK__tblApartm__famil__2610A626">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblApartment" EntitySet="tblApartment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__empId__1F63A897" Association="Self.FK__tblContra__empId__1F63A897">
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__famil__1E6F845E" Association="Self.FK__tblContra__famil__1E6F845E">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__image__22401542" Association="Self.FK__tblContra__image__22401542">
+      <End Role="tblContract" EntitySet="tblContract" />
+      <End Role="tblContractDetail" EntitySet="tblContractDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblMember__famil__12FDD1B2" Association="Self.FK__tblMember__famil__12FDD1B2">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblMember" EntitySet="tblMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPerRel__idPer__1BC821DD" Association="Self.FK__tblPerRel__idPer__1BC821DD">
+      <End Role="tblPermission" EntitySet="tblPermission" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPerRel__idUse__1AD3FDA4" Association="Self.FK__tblPerRel__idUse__1AD3FDA4">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

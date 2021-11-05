@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApartmentModelStoreContainer" CdmEntityContainer="ApartmentEntities">
+    <EntitySetMapping Name="tblApartment">
+      <EntityTypeMapping TypeName="ApartmentModel.tblApartment">
+        <MappingFragment StoreEntitySet="tblApartment">
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContract">
+      <EntityTypeMapping TypeName="ApartmentModel.tblContract">
+        <MappingFragment StoreEntitySet="tblContract">
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="contractName" ColumnName="contractName" />
+          <ScalarProperty Name="contractType" ColumnName="contractType" />
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="empId" ColumnName="empId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractDetail">
+      <EntityTypeMapping TypeName="ApartmentModel.tblContractDetail">
+        <MappingFragment StoreEntitySet="tblContractDetail">
+          <ScalarProperty Name="contDetailId" ColumnName="contDetailId" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="limitation" ColumnName="limitation" />
+          <ScalarProperty Name="signDay" ColumnName="signDay" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEmployee">
+      <EntityTypeMapping TypeName="ApartmentModel.tblEmployee">
+        <MappingFragment StoreEntitySet="tblEmployee">
+          <ScalarProperty Name="empId" ColumnName="empId" />
+          <ScalarProperty Name="empName" ColumnName="empName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFamily">
+      <EntityTypeMapping TypeName="ApartmentModel.tblFamily">
+        <MappingFragment StoreEntitySet="tblFamily">
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getUserLogin" FunctionName="ApartmentModel.Store.getUserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getUserLogin_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="permission" ColumnName="permission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getUser" FunctionName="ApartmentModel.Store.getUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getUser_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="permission" ColumnName="permission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getPermission" FunctionName="ApartmentModel.Store.getPermission">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getPermission_Result">
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+          <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tblPermission">
+      <EntityTypeMapping TypeName="ApartmentModel.tblPermission">
+        <MappingFragment StoreEntitySet="tblPermission">
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+          <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerRelationship">
+      <EntityTypeMapping TypeName="ApartmentModel.tblPerRelationship">
+        <MappingFragment StoreEntitySet="tblPerRelationship">
+          <ScalarProperty Name="idPerRel" ColumnName="idPerRel" />
+          <ScalarProperty Name="idUserRel" ColumnName="idUserRel" />
+          <ScalarProperty Name="idRel" ColumnName="idRel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="ApartmentModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApartmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Apartment" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="deleteApartment">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteEmployee">
+      <Parameter Name="empId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteFamily">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteMember">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAparment" ReturnType="Collection(ApartmentModel.getAparment_Result)" />
+    <FunctionImport Name="getApart" ReturnType="Collection(ApartmentModel.getApart_Result)" />
+    <FunctionImport Name="getEmployee" ReturnType="Collection(ApartmentModel.getEmployee_Result)" />
+    <FunctionImport Name="getFamily" ReturnType="Collection(ApartmentModel.getFamily_Result)" />
+    <FunctionImport Name="getMaxIdEmp" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="getMember" ReturnType="Collection(ApartmentModel.getMember_Result)" />
+    <FunctionImport Name="getPermission" ReturnType="Collection(ApartmentModel.getPermission_Result)" />
+    <FunctionImport Name="getUser" ReturnType="Collection(ApartmentModel.getUser_Result)" />
+    <FunctionImport Name="getUserLogin" ReturnType="Collection(ApartmentModel.getUserLogin_Result)">
+      <Parameter Name="uuid" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertApartment">
+      <Parameter Name="apartId" Mode="In" Type="String" />
+      <Parameter Name="price" Mode="In" Type="Double" />
+      <Parameter Name="area" Mode="In" Type="Double" />
+      <Parameter Name="note" Mode="In" Type="String" />
+      <Parameter Name="image" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertEmployee">
+      <Parameter Name="empName" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="Boolean" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="dob" Mode="In" Type="DateTime" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="identityNumber" Mode="In" Type="String" />
+      <Parameter Name="departmentId" Mode="In" Type="Int32" />
+      <Parameter Name="image" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertFamily">
+      <Parameter Name="familyId" Mode="In" Type="String" />
+      <Parameter Name="familyName" Mode="In" Type="String" />
+      <Parameter Name="numberMember" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertMember">
+      <Parameter Name="memberId" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="Boolean" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="identityNumber" Mode="In" Type="String" />
+      <Parameter Name="image" Mode="In" Type="String" />
+      <Parameter Name="dob" Mode="In" Type="DateTime" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="searchFamily" ReturnType="Collection(ApartmentModel.searchFamily_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ApartmentModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ApartmentModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="updateApartment">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="apartId" Mode="In" Type="String" />
+      <Parameter Name="price" Mode="In" Type="Double" />
+      <Parameter Name="area" Mode="In" Type="Double" />
+      <Parameter Name="note" Mode="In" Type="String" />
+      <Parameter Name="image" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateEmployee">
+      <Parameter Name="empId" Mode="In" Type="Int32" />
+      <Parameter Name="empName" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="Boolean" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="dob" Mode="In" Type="DateTime" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="identityNumber" Mode="In" Type="String" />
+      <Parameter Name="departmentId" Mode="In" Type="Int32" />
+      <Parameter Name="image" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateFamily">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="familyId" Mode="In" Type="String" />
+      <Parameter Name="familyName" Mode="In" Type="String" />
+      <Parameter Name="numberMember" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateMember">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="memberId" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="Boolean" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="identityNumber" Mode="In" Type="String" />
+      <Parameter Name="image" Mode="In" Type="String" />
+      <Parameter Name="dob" Mode="In" Type="DateTime" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="searchApartment" ReturnType="Collection(ApartmentModel.searchApartment_Result)">
+      <Parameter Name="apartId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="searchApart" ReturnType="Collection(ApartmentModel.searchApart_Result)">
+      <Parameter Name="apartId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="searchApartById" ReturnType="Collection(ApartmentModel.searchApartById_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="searchFamilyById" ReturnType="Collection(ApartmentModel.searchFamilyById_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="searchFamilyByid1" ReturnType="Collection(ApartmentModel.searchFamilyByid1_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteContract">
+      <Parameter Name="contractId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteContractDetails">
+      <Parameter Name="contDetailId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getContract" ReturnType="Collection(ApartmentModel.getContract_Result)" />
+    <FunctionImport Name="insertContract">
+      <Parameter Name="contractName" Mode="In" Type="String" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+      <Parameter Name="empId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insertContractDetails">
+      <Parameter Name="limitation" Mode="In" Type="String" />
+      <Parameter Name="signDay" Mode="In" Type="DateTime" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="contractId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateContract">
+      <Parameter Name="contractId" Mode="In" Type="Int32" />
+      <Parameter Name="contractName" Mode="In" Type="String" />
+      <Parameter Name="familyId" Mode="In" Type="Int32" />
+      <Parameter Name="empId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateContractDetails">
+      <Parameter Name="contDetailId" Mode="In" Type="Int32" />
+      <Parameter Name="limitation" Mode="In" Type="String" />
+      <Parameter Name="signDay" Mode="In" Type="DateTime" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="contractId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="searchContractByName" ReturnType="Collection(ApartmentModel.searchContractByName_Result)">
+      <Parameter Name="contractName" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="ApartmentModel.sysdiagrams" />
+    <EntitySet Name="tblApartment" EntityType="ApartmentModel.tblApartment" />
+    <EntitySet Name="tblContract" EntityType="ApartmentModel.tblContract" />
+    <EntitySet Name="tblEmployee" EntityType="ApartmentModel.tblEmployee" />
+    <EntitySet Name="tblFamily" EntityType="ApartmentModel.tblFamily" />
+    <EntitySet Name="tblMember" EntityType="ApartmentModel.tblMember" />
+    <AssociationSet Name="FK__tblApartm__famil__2610A626" Association="ApartmentModel.FK__tblApartm__famil__2610A626">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblApartment" EntitySet="tblApartment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__famil__24E777C3" Association="ApartmentModel.FK__tblContra__famil__24E777C3">
+      <End Role="tblApartment" EntitySet="tblApartment" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__empId__25DB9BFC" Association="ApartmentModel.FK__tblContra__empId__25DB9BFC">
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblMember__famil__12FDD1B2" Association="ApartmentModel.FK__tblMember__famil__12FDD1B2">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblMember" EntitySet="tblMember" />
+    </AssociationSet>
+    <EntitySet Name="tblContractDetail" EntityType="ApartmentModel.tblContractDetail" />
+    <AssociationSet Name="FK__tblContra__contr__2B947552" Association="ApartmentModel.FK__tblContra__contr__2B947552">
+      <End Role="tblContract" EntitySet="tblContract" />
+      <End Role="tblContractDetail" EntitySet="tblContractDetail" />
+    </AssociationSet>
+    <FunctionImport Name="searchContractDetailsById" ReturnType="Collection(ApartmentModel.searchContractDetailsById_Result)">
+      <Parameter Name="contractId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tblService" EntityType="ApartmentModel.tblService" />
+    <EntitySet Name="tblServiceBill" EntityType="ApartmentModel.tblServiceBill" />
+    <AssociationSet Name="FK__tblServic__apart__370627FE" Association="ApartmentModel.FK__tblServic__apart__370627FE">
+      <End Role="tblApartment" EntitySet="tblApartment" />
+      <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblServic__empId__37FA4C37" Association="ApartmentModel.FK__tblServic__empId__37FA4C37">
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+      <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblServic__serId__38EE7070" Association="ApartmentModel.FK__tblServic__serId__38EE7070">
+      <End Role="tblService" EntitySet="tblService" />
+      <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+    </AssociationSet>
+    <FunctionImport Name="getSerBill" ReturnType="Collection(ApartmentModel.getSerBill_Result)" />
+    <EntitySet Name="tblPermission" EntityType="ApartmentModel.tblPermission" />
+    <EntitySet Name="tblPerRelationship" EntityType="ApartmentModel.tblPerRelationship" />
+    <EntitySet Name="tblUser" EntityType="ApartmentModel.tblUser" />
+    <AssociationSet Name="FK__tblPerRel__idPer__1BC821DD" Association="ApartmentModel.FK__tblPerRel__idPer__1BC821DD">
+      <End Role="tblPermission" EntitySet="tblPermission" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPerRel__idUse__1AD3FDA4" Association="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+    <FunctionImport Name="searchApartByIdOrApart" ReturnType="Collection(ApartmentModel.searchApartByIdOrApart_Result)">
+      <Parameter Name="apartId" Mode="In" Type="String" />
+      <Parameter Name="familyId" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="getAparment_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getApart_Result">
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getEmployee_Result">
+    <Property Type="Int32" Name="empId" Nullable="false" />
+    <Property Type="String" Name="empName" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="gender" Nullable="true" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="dob" Nullable="true" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="departmentId" Nullable="true" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getFamily_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="numberMember" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getMember_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="memberId" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="gender" Nullable="true" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="dob" Nullable="true" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getPermission_Result">
+    <Property Type="Int32" Name="permissionId" Nullable="false" />
+    <Property Type="String" Name="permissionName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="permissionAccess" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getUser_Result">
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getUserLogin_Result">
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="searchFamily_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="memberId" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="gender" Nullable="true" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="dob" Nullable="true" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="searchApartment_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="searchApart_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="searchApartById_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="searchFamilyById_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="numberMember" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="searchFamilyByid1_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="numberMember" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getContract_Result">
+    <Property Type="Int32" Name="ContractId" Nullable="false" />
+    <Property Type="String" Name="ContractName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+    <Property Type="Int32" Name="empId" Nullable="true" />
+    <Property Type="String" Name="limitation" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="signDay" Nullable="true" />
+    <Property Type="String" Name="content" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="searchContractByName_Result">
+    <Property Type="Int32" Name="contractId" Nullable="false" />
+    <Property Type="String" Name="contractName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+    <Property Type="Int32" Name="empId" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblApartment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="apartId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Double" />
+    <Property Name="area" Type="Double" />
+    <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="familyId" Type="Int32" />
+    <NavigationProperty Name="tblFamily" Relationship="ApartmentModel.FK__tblApartm__famil__2610A626" FromRole="tblApartment" ToRole="tblFamily" />
+    <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__famil__24E777C3" FromRole="tblApartment" ToRole="tblContract" />
+    <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__apart__370627FE" FromRole="tblApartment" ToRole="tblServiceBill" />
+  </EntityType>
+  <EntityType Name="tblContract">
+    <Key>
+      <PropertyRef Name="contractId" />
+    </Key>
+    <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="familyId" Type="Int32" />
+    <Property Name="empId" Type="Int32" />
+    <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblContra__famil__24E777C3" FromRole="tblContract" ToRole="tblApartment" />
+    <NavigationProperty Name="tblEmployee" Relationship="ApartmentModel.FK__tblContra__empId__25DB9BFC" FromRole="tblContract" ToRole="tblEmployee" />
+    <NavigationProperty Name="tblContractDetail" Relationship="ApartmentModel.FK__tblContra__contr__2B947552" FromRole="tblContract" ToRole="tblContractDetail" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="empId" />
+    </Key>
+    <Property Name="empId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Boolean" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="departmentId" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__empId__25DB9BFC" FromRole="tblEmployee" ToRole="tblContract" />
+    <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__empId__37FA4C37" FromRole="tblEmployee" ToRole="tblServiceBill" />
+  </EntityType>
+  <EntityType Name="tblFamily">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="familyId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="familyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="numberMember" Type="Int32" />
+    <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblApartm__famil__2610A626" FromRole="tblFamily" ToRole="tblApartment" />
+    <NavigationProperty Name="tblMember" Relationship="ApartmentModel.FK__tblMember__famil__12FDD1B2" FromRole="tblFamily" ToRole="tblMember" />
+  </EntityType>
+  <EntityType Name="tblMember">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="memberId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Boolean" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="familyId" Type="Int32" />
+    <NavigationProperty Name="tblFamily" Relationship="ApartmentModel.FK__tblMember__famil__12FDD1B2" FromRole="tblMember" ToRole="tblFamily" />
+  </EntityType>
+  <Association Name="FK__tblApartm__famil__2610A626">
+    <End Type="ApartmentModel.tblFamily" Role="tblFamily" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblApartment">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__famil__24E777C3">
+    <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblApartment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__empId__25DB9BFC">
+    <End Type="ApartmentModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="empId" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="empId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblMember__famil__12FDD1B2">
+    <End Type="ApartmentModel.tblFamily" Role="tblFamily" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblMember" Role="tblMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblMember">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblContractDetail">
+    <Key>
+      <PropertyRef Name="contDetailId" />
+    </Key>
+    <Property Name="contDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="limitation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="signDay" Type="DateTime" Precision="0" />
+    <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="contractId" Type="Int32" />
+    <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__contr__2B947552" FromRole="tblContractDetail" ToRole="tblContract" />
+  </EntityType>
+  <Association Name="FK__tblContra__contr__2B947552">
+    <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblContractDetail" Role="tblContractDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblContract">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="tblContractDetail">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="searchContractDetailsById_Result">
+    <Property Type="Int32" Name="contDetailId" Nullable="false" />
+    <Property Type="String" Name="limitation" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="signDay" Nullable="true" />
+    <Property Type="String" Name="content" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="contractId" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tblService">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="serName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Double" />
+    <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__serId__38EE7070" FromRole="tblService" ToRole="tblServiceBill" />
+  </EntityType>
+  <EntityType Name="tblServiceBill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="serBillName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="total" Type="Double" />
+    <Property Name="datePrint" Type="DateTime" Precision="3" />
+    <Property Name="empId" Type="Int32" />
+    <Property Name="apartId" Type="Int32" />
+    <Property Name="serId" Type="Int32" />
+    <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblServic__apart__370627FE" FromRole="tblServiceBill" ToRole="tblApartment" />
+    <NavigationProperty Name="tblEmployee" Relationship="ApartmentModel.FK__tblServic__empId__37FA4C37" FromRole="tblServiceBill" ToRole="tblEmployee" />
+    <NavigationProperty Name="tblService" Relationship="ApartmentModel.FK__tblServic__serId__38EE7070" FromRole="tblServiceBill" ToRole="tblService" />
+  </EntityType>
+  <Association Name="FK__tblServic__apart__370627FE">
+    <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblApartment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblServiceBill">
+        <PropertyRef Name="apartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblServic__empId__37FA4C37">
+    <End Type="ApartmentModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="empId" />
+      </Principal>
+      <Dependent Role="tblServiceBill">
+        <PropertyRef Name="empId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblServic__serId__38EE7070">
+    <End Type="ApartmentModel.tblService" Role="tblService" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblService">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblServiceBill">
+        <PropertyRef Name="serId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="getSerBill_Result">
+    <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="serBillName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="total" Nullable="true" />
+    <Property Type="DateTime" Name="datePrint" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="empId" Nullable="true" />
+    <Property Type="Int32" Name="apartId" Nullable="true" />
+    <Property Type="Int32" Name="serId" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tblPermission">
+    <Key>
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="permissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permissionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="permissionAccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPermission" ToRole="tblPerRelationship" />
+  </EntityType>
+  <EntityType Name="tblPerRelationship">
+    <Key>
+      <PropertyRef Name="idRel" />
+    </Key>
+    <Property Name="idRel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUserRel" Type="Int32" />
+    <Property Name="idPerRel" Type="Int32" />
+    <NavigationProperty Name="tblPermission" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPerRelationship" ToRole="tblPermission" />
+    <NavigationProperty Name="tblUser" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblPerRelationship" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uuid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblUser" ToRole="tblPerRelationship" />
+  </EntityType>
+  <Association Name="FK__tblPerRel__idPer__1BC821DD">
+    <End Type="ApartmentModel.tblPermission" Role="tblPermission" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPermission">
+        <PropertyRef Name="permissionId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idPerRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPerRel__idUse__1AD3FDA4">
+    <End Type="ApartmentModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idUserRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="searchApartByIdOrApart_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="Double" Name="area" Nullable="true" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+    <Property Type="Boolean" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="familyId" Nullable="true" />
+  </ComplexType>
+</Schema>

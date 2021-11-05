@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApartmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblApartment">
+    <Key>
+      <PropertyRef Name="apartId" />
+    </Key>
+    <Property Name="apartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price" Type="Double" />
+    <Property Name="area" Type="Double" />
+    <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="familyId" Type="Int32" />
+    <NavigationProperty Name="tblFamily" Relationship="Self.FK__tblApartm__famil__182C9B23" FromRole="tblApartment" ToRole="tblFamily" />
+    <NavigationProperty Name="tblContract" Relationship="Self.FK__tblContra__apart__1ED998B2" FromRole="tblApartment" ToRole="tblContract" />
+  </EntityType>
+  <EntityType Name="tblContract">
+    <Key>
+      <PropertyRef Name="contractId" />
+    </Key>
+    <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="contractType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="apartId" Type="Int32" />
+    <Property Name="familyId" Type="Int32" />
+    <Property Name="empId" Type="Int32" />
+    <NavigationProperty Name="tblApartment" Relationship="Self.FK__tblContra__apart__1ED998B2" FromRole="tblContract" ToRole="tblApartment" />
+    <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblContra__empId__20C1E124" FromRole="tblContract" ToRole="tblEmployee" />
+    <NavigationProperty Name="tblFamily" Relationship="Self.FK__tblContra__famil__1FCDBCEB" FromRole="tblContract" ToRole="tblFamily" />
+  </EntityType>
+  <EntityType Name="tblContractDetail">
+    <Key>
+      <PropertyRef Name="contDetailId" />
+    </Key>
+    <Property Name="contDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contractId" Type="Int32" />
+    <Property Name="limitation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="signDay" Type="DateTime" Precision="0" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="empId" />
+    </Key>
+    <Property Name="empId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Boolean" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="departmentId" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblContract" Relationship="Self.FK__tblContra__empId__20C1E124" FromRole="tblEmployee" ToRole="tblContract" />
+  </EntityType>
+  <EntityType Name="tblFamily">
+    <Key>
+      <PropertyRef Name="familyId" />
+    </Key>
+    <Property Name="familyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="memberId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="Boolean" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblApartment" Relationship="Self.FK__tblApartm__famil__182C9B23" FromRole="tblFamily" ToRole="tblApartment" />
+    <NavigationProperty Name="tblContract" Relationship="Self.FK__tblContra__famil__1FCDBCEB" FromRole="tblFamily" ToRole="tblContract" />
+  </EntityType>
+  <Association Name="FK__tblApartm__famil__182C9B23">
+    <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+    <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="familyId" />
+      </Principal>
+      <Dependent Role="tblApartment">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__apart__1ED998B2">
+    <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="0..1" />
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblApartment">
+        <PropertyRef Name="apartId" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="apartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__empId__20C1E124">
+    <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployee">
+        <PropertyRef Name="empId" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="empId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblContra__famil__1FCDBCEB">
+    <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+    <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFamily">
+        <PropertyRef Name="familyId" />
+      </Principal>
+      <Dependent Role="tblContract">
+        <PropertyRef Name="familyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApartmentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblApartment" EntityType="Self.tblApartment" />
+    <EntitySet Name="tblContract" EntityType="Self.tblContract" />
+    <EntitySet Name="tblContractDetail" EntityType="Self.tblContractDetail" />
+    <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" />
+    <EntitySet Name="tblFamily" EntityType="Self.tblFamily" />
+    <AssociationSet Name="FK__tblApartm__famil__182C9B23" Association="Self.FK__tblApartm__famil__182C9B23">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblApartment" EntitySet="tblApartment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__apart__1ED998B2" Association="Self.FK__tblContra__apart__1ED998B2">
+      <End Role="tblApartment" EntitySet="tblApartment" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__empId__20C1E124" Association="Self.FK__tblContra__empId__20C1E124">
+      <End Role="tblEmployee" EntitySet="tblEmployee" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblContra__famil__1FCDBCEB" Association="Self.FK__tblContra__famil__1FCDBCEB">
+      <End Role="tblFamily" EntitySet="tblFamily" />
+      <End Role="tblContract" EntitySet="tblContract" />
+    </AssociationSet>
+    <FunctionImport Name="getUserLogin" ReturnType="Collection(ApartmentModel.getUserLogin_Result)">
+      <Parameter Name="uuid" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getUser" ReturnType="Collection(ApartmentModel.getUser_Result)" />
+    <FunctionImport Name="getPermission" ReturnType="Collection(ApartmentModel.getPermission_Result)" />
+    <EntitySet Name="tblPermission" EntityType="ApartmentModel.tblPermission" />
+    <EntitySet Name="tblPerRelationship" EntityType="ApartmentModel.tblPerRelationship" />
+    <EntitySet Name="tblUser" EntityType="ApartmentModel.tblUser" />
+    <AssociationSet Name="FK__tblPerRel__idPer__1BC821DD" Association="ApartmentModel.FK__tblPerRel__idPer__1BC821DD">
+      <End Role="tblPermission" EntitySet="tblPermission" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPerRel__idUse__1AD3FDA4" Association="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="getUserLogin_Result">
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="permission" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getUser_Result">
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="permission" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getPermission_Result">
+    <Property Type="Int32" Name="permissionId" Nullable="false" />
+    <Property Type="String" Name="permissionName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="permissionAccess" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <EntityType Name="tblPermission">
+    <Key>
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="permissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permissionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="permissionAccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPermission" ToRole="tblPerRelationship" />
+  </EntityType>
+  <EntityType Name="tblPerRelationship">
+    <Key>
+      <PropertyRef Name="idRel" />
+    </Key>
+    <Property Name="idRel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUserRel" Type="Int32" />
+    <Property Name="idPerRel" Type="Int32" />
+    <NavigationProperty Name="tblPermission" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPerRelationship" ToRole="tblPermission" />
+    <NavigationProperty Name="tblUser" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblPerRelationship" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uuid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblUser" ToRole="tblPerRelationship" />
+  </EntityType>
+  <Association Name="FK__tblPerRel__idPer__1BC821DD">
+    <End Type="ApartmentModel.tblPermission" Role="tblPermission" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPermission">
+        <PropertyRef Name="permissionId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idPerRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPerRel__idUse__1AD3FDA4">
+    <End Type="ApartmentModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="tblPerRelationship">
+        <PropertyRef Name="idUserRel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

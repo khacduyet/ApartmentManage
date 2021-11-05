@@ -1,0 +1,1596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ApartmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblApartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apartId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="price" Type="float" />
+          <Property Name="area" Type="float" />
+          <Property Name="note" Type="nvarchar" MaxLength="100" />
+          <Property Name="image" Type="text" />
+          <Property Name="status" Type="bit" />
+          <Property Name="familyId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblContract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractName" Type="nvarchar" MaxLength="100" />
+          <Property Name="familyId" Type="int" />
+          <Property Name="empId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblContractDetail">
+          <Key>
+            <PropertyRef Name="contDetailId" />
+          </Key>
+          <Property Name="contDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="limitation" Type="nvarchar" MaxLength="50" />
+          <Property Name="signDay" Type="date" />
+          <Property Name="content" Type="nvarchar" MaxLength="1000" />
+          <Property Name="contractId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empName" Type="nvarchar" MaxLength="100" />
+          <Property Name="gender" Type="bit" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
+          <Property Name="dob" Type="date" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="identityNumber" Type="varchar" MaxLength="20" />
+          <Property Name="departmentId" Type="int" />
+          <Property Name="image" Type="text" />
+        </EntityType>
+        <EntityType Name="tblFamily">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familyId" Type="varchar" MaxLength="20" />
+          <Property Name="familyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="numberMember" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="bit" />
+          <Property Name="email" Type="nvarchar" MaxLength="200" />
+          <Property Name="identityNumber" Type="varchar" MaxLength="20" />
+          <Property Name="image" Type="text" />
+          <Property Name="dob" Type="date" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
+          <Property Name="familyId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPermission">
+          <Key>
+            <PropertyRef Name="permissionId" />
+          </Key>
+          <Property Name="permissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permissionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="permissionAccess" Type="text" />
+        </EntityType>
+        <EntityType Name="tblPerRelationship">
+          <Key>
+            <PropertyRef Name="idRel" />
+          </Key>
+          <Property Name="idRel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUserRel" Type="int" />
+          <Property Name="idPerRel" Type="int" />
+        </EntityType>
+        <EntityType Name="tblService">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="serName" Type="nvarchar" MaxLength="200" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="tblServiceBill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="serBillName" Type="nvarchar" MaxLength="200" />
+          <Property Name="note" Type="nvarchar" MaxLength="200" />
+          <Property Name="total" Type="float" />
+          <Property Name="datePrint" Type="datetime" />
+          <Property Name="empId" Type="int" />
+          <Property Name="apartId" Type="int" />
+          <Property Name="serId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uuid" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="pwd" Type="nvarchar" MaxLength="100" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <Association Name="FK__tblApartm__famil__22AA2996">
+          <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+          <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFamily">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblApartment">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblContra__contr__2D27B809">
+          <End Role="tblContract" Type="Self.tblContract" Multiplicity="0..1" />
+          <End Role="tblContractDetail" Type="Self.tblContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContract">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="tblContractDetail">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblContra__empId__2A4B4B5E">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="tblContract">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblContra__famil__29572725">
+          <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="0..1" />
+          <End Role="tblContract" Type="Self.tblContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApartment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblContract">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMember__famil__1ED998B2">
+          <End Role="tblFamily" Type="Self.tblFamily" Multiplicity="0..1" />
+          <End Role="tblMember" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFamily">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPerRel__idPer__173876EA">
+          <End Role="tblPermission" Type="Self.tblPermission" Multiplicity="0..1" />
+          <End Role="tblPerRelationship" Type="Self.tblPerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermission">
+              <PropertyRef Name="permissionId" />
+            </Principal>
+            <Dependent Role="tblPerRelationship">
+              <PropertyRef Name="idPerRel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPerRel__idUse__164452B1">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblPerRelationship" Type="Self.tblPerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="tblPerRelationship">
+              <PropertyRef Name="idUserRel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblServic__apart__32E0915F">
+          <End Role="tblApartment" Type="Self.tblApartment" Multiplicity="0..1" />
+          <End Role="tblServiceBill" Type="Self.tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApartment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="apartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblServic__empId__33D4B598">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblServiceBill" Type="Self.tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblServic__serId__34C8D9D1">
+          <End Role="tblService" Type="Self.tblService" Multiplicity="0..1" />
+          <End Role="tblServiceBill" Type="Self.tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblService">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="serId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="deleteApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteContract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contractId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteContractDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contDetailId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="getAparment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getContract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getMaxIdEmp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getSerBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uuid" Type="nvarchar" Mode="In" />
+          <Parameter Name="pwd" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="insertApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="apartId" Type="varchar" Mode="In" />
+          <Parameter Name="price" Type="float" Mode="In" />
+          <Parameter Name="area" Type="float" Mode="In" />
+          <Parameter Name="note" Type="nvarchar" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+          <Parameter Name="status" Type="bit" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertContract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contractName" Type="nvarchar" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertContractDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="limitation" Type="nvarchar" Mode="In" />
+          <Parameter Name="signDay" Type="date" Mode="In" />
+          <Parameter Name="content" Type="text" Mode="In" />
+          <Parameter Name="contractId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empName" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="bit" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+          <Parameter Name="departmentId" Type="int" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+        </Function>
+        <Function Name="insertFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="familyId" Type="varchar" Mode="In" />
+          <Parameter Name="familyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="numberMember" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="memberId" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="bit" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="searchApart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="apartId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="searchApartById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="searchApartByIdOrApart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="apartId" Type="varchar" Mode="In" />
+          <Parameter Name="familyId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="searchContractByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contractName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="searchContractDetailsById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contractId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="searchFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="searchFamilyByid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="updateApartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="apartId" Type="varchar" Mode="In" />
+          <Parameter Name="price" Type="float" Mode="In" />
+          <Parameter Name="area" Type="float" Mode="In" />
+          <Parameter Name="note" Type="nvarchar" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+          <Parameter Name="status" Type="bit" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateContract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contractId" Type="int" Mode="In" />
+          <Parameter Name="contractName" Type="nvarchar" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+          <Parameter Name="empId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateContractDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="contDetailId" Type="int" Mode="In" />
+          <Parameter Name="limitation" Type="nvarchar" Mode="In" />
+          <Parameter Name="signDay" Type="date" Mode="In" />
+          <Parameter Name="content" Type="text" Mode="In" />
+          <Parameter Name="contractId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empId" Type="int" Mode="In" />
+          <Parameter Name="empName" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="bit" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+          <Parameter Name="departmentId" Type="int" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+        </Function>
+        <Function Name="updateFamily" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="familyId" Type="varchar" Mode="In" />
+          <Parameter Name="familyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="numberMember" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="memberId" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="bit" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="identityNumber" Type="varchar" Mode="In" />
+          <Parameter Name="image" Type="text" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="familyId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ApartmentModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblApartment" EntityType="Self.tblApartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContract" EntityType="Self.tblContract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContractDetail" EntityType="Self.tblContractDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFamily" EntityType="Self.tblFamily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMember" EntityType="Self.tblMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPermission" EntityType="Self.tblPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPerRelationship" EntityType="Self.tblPerRelationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblService" EntityType="Self.tblService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblServiceBill" EntityType="Self.tblServiceBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblApartm__famil__22AA2996" Association="Self.FK__tblApartm__famil__22AA2996">
+            <End Role="tblFamily" EntitySet="tblFamily" />
+            <End Role="tblApartment" EntitySet="tblApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblContra__contr__2D27B809" Association="Self.FK__tblContra__contr__2D27B809">
+            <End Role="tblContract" EntitySet="tblContract" />
+            <End Role="tblContractDetail" EntitySet="tblContractDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblContra__empId__2A4B4B5E" Association="Self.FK__tblContra__empId__2A4B4B5E">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblContract" EntitySet="tblContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblContra__famil__29572725" Association="Self.FK__tblContra__famil__29572725">
+            <End Role="tblApartment" EntitySet="tblApartment" />
+            <End Role="tblContract" EntitySet="tblContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMember__famil__1ED998B2" Association="Self.FK__tblMember__famil__1ED998B2">
+            <End Role="tblFamily" EntitySet="tblFamily" />
+            <End Role="tblMember" EntitySet="tblMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPerRel__idPer__173876EA" Association="Self.FK__tblPerRel__idPer__173876EA">
+            <End Role="tblPermission" EntitySet="tblPermission" />
+            <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPerRel__idUse__164452B1" Association="Self.FK__tblPerRel__idUse__164452B1">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblServic__apart__32E0915F" Association="Self.FK__tblServic__apart__32E0915F">
+            <End Role="tblApartment" EntitySet="tblApartment" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblServic__empId__33D4B598" Association="Self.FK__tblServic__empId__33D4B598">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblServic__serId__34C8D9D1" Association="Self.FK__tblServic__serId__34C8D9D1">
+            <End Role="tblService" EntitySet="tblService" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApartmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Apartment" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="deleteApartment">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteEmployee">
+          <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteFamily">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteMember">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getAparment" ReturnType="Collection(ApartmentModel.getAparment_Result)" />
+          <FunctionImport Name="getApart" ReturnType="Collection(ApartmentModel.getApart_Result)" />
+          <FunctionImport Name="getEmployee" ReturnType="Collection(ApartmentModel.getEmployee_Result)" />
+          <FunctionImport Name="getFamily" ReturnType="Collection(ApartmentModel.getFamily_Result)" />
+          <FunctionImport Name="getMaxIdEmp" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getMember" ReturnType="Collection(ApartmentModel.getMember_Result)" />
+          <FunctionImport Name="getPermission" ReturnType="Collection(ApartmentModel.getPermission_Result)" />
+          <FunctionImport Name="getUser" ReturnType="Collection(ApartmentModel.getUser_Result)" />
+          <FunctionImport Name="getUserLogin" ReturnType="Collection(ApartmentModel.getUserLogin_Result)">
+            <Parameter Name="uuid" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertApartment">
+            <Parameter Name="apartId" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Double" />
+            <Parameter Name="area" Mode="In" Type="Double" />
+            <Parameter Name="note" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Boolean" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertEmployee">
+            <Parameter Name="empName" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="identityNumber" Mode="In" Type="String" />
+            <Parameter Name="departmentId" Mode="In" Type="Int32" />
+            <Parameter Name="image" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertFamily">
+            <Parameter Name="familyId" Mode="In" Type="String" />
+            <Parameter Name="familyName" Mode="In" Type="String" />
+            <Parameter Name="numberMember" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertMember">
+            <Parameter Name="memberId" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="identityNumber" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchFamily" ReturnType="Collection(ApartmentModel.searchFamily_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ApartmentModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ApartmentModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="updateApartment">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="apartId" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Double" />
+            <Parameter Name="area" Mode="In" Type="Double" />
+            <Parameter Name="note" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Boolean" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateEmployee">
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+            <Parameter Name="empName" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="identityNumber" Mode="In" Type="String" />
+            <Parameter Name="departmentId" Mode="In" Type="Int32" />
+            <Parameter Name="image" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="updateFamily">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="familyId" Mode="In" Type="String" />
+            <Parameter Name="familyName" Mode="In" Type="String" />
+            <Parameter Name="numberMember" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateMember">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="memberId" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="identityNumber" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchApartment" ReturnType="Collection(ApartmentModel.searchApartment_Result)">
+          <Parameter Name="apartId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="searchApart" ReturnType="Collection(ApartmentModel.searchApart_Result)">
+          <Parameter Name="apartId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="searchApartById" ReturnType="Collection(ApartmentModel.searchApartById_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchFamilyById" ReturnType="Collection(ApartmentModel.searchFamilyById_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchFamilyByid1" ReturnType="Collection(ApartmentModel.searchFamilyByid1_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteContract">
+          <Parameter Name="contractId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteContractDetails">
+          <Parameter Name="contDetailId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getContract" ReturnType="Collection(ApartmentModel.getContract_Result)" />
+          <FunctionImport Name="insertContract">
+            <Parameter Name="contractName" Mode="In" Type="String" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertContractDetails">
+            <Parameter Name="limitation" Mode="In" Type="String" />
+            <Parameter Name="signDay" Mode="In" Type="DateTime" />
+            <Parameter Name="content" Mode="In" Type="String" />
+            <Parameter Name="contractId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateContract">
+            <Parameter Name="contractId" Mode="In" Type="Int32" />
+            <Parameter Name="contractName" Mode="In" Type="String" />
+            <Parameter Name="familyId" Mode="In" Type="Int32" />
+            <Parameter Name="empId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateContractDetails">
+            <Parameter Name="contDetailId" Mode="In" Type="Int32" />
+            <Parameter Name="limitation" Mode="In" Type="String" />
+            <Parameter Name="signDay" Mode="In" Type="DateTime" />
+            <Parameter Name="content" Mode="In" Type="String" />
+            <Parameter Name="contractId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchContractByName" ReturnType="Collection(ApartmentModel.searchContractByName_Result)">
+          <Parameter Name="contractName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="sysdiagrams" EntityType="ApartmentModel.sysdiagrams" />
+          <EntitySet Name="tblApartment" EntityType="ApartmentModel.tblApartment" />
+          <EntitySet Name="tblContract" EntityType="ApartmentModel.tblContract" />
+          <EntitySet Name="tblEmployee" EntityType="ApartmentModel.tblEmployee" />
+          <EntitySet Name="tblFamily" EntityType="ApartmentModel.tblFamily" />
+          <EntitySet Name="tblMember" EntityType="ApartmentModel.tblMember" />
+          <AssociationSet Name="FK__tblApartm__famil__2610A626" Association="ApartmentModel.FK__tblApartm__famil__2610A626">
+            <End Role="tblFamily" EntitySet="tblFamily" />
+            <End Role="tblApartment" EntitySet="tblApartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblContra__famil__24E777C3" Association="ApartmentModel.FK__tblContra__famil__24E777C3">
+            <End Role="tblApartment" EntitySet="tblApartment" />
+            <End Role="tblContract" EntitySet="tblContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblContra__empId__25DB9BFC" Association="ApartmentModel.FK__tblContra__empId__25DB9BFC">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblContract" EntitySet="tblContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMember__famil__12FDD1B2" Association="ApartmentModel.FK__tblMember__famil__12FDD1B2">
+            <End Role="tblFamily" EntitySet="tblFamily" />
+            <End Role="tblMember" EntitySet="tblMember" />
+          </AssociationSet>
+          <EntitySet Name="tblContractDetail" EntityType="ApartmentModel.tblContractDetail" />
+          <AssociationSet Name="FK__tblContra__contr__2B947552" Association="ApartmentModel.FK__tblContra__contr__2B947552">
+            <End Role="tblContract" EntitySet="tblContract" />
+            <End Role="tblContractDetail" EntitySet="tblContractDetail" />
+          </AssociationSet>
+          <FunctionImport Name="searchContractDetailsById" ReturnType="Collection(ApartmentModel.searchContractDetailsById_Result)">
+          <Parameter Name="contractId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblService" EntityType="ApartmentModel.tblService" />
+          <EntitySet Name="tblServiceBill" EntityType="ApartmentModel.tblServiceBill" />
+          <AssociationSet Name="FK__tblServic__apart__370627FE" Association="ApartmentModel.FK__tblServic__apart__370627FE">
+            <End Role="tblApartment" EntitySet="tblApartment" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblServic__empId__37FA4C37" Association="ApartmentModel.FK__tblServic__empId__37FA4C37">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblServic__serId__38EE7070" Association="ApartmentModel.FK__tblServic__serId__38EE7070">
+            <End Role="tblService" EntitySet="tblService" />
+            <End Role="tblServiceBill" EntitySet="tblServiceBill" />
+          </AssociationSet>
+          <FunctionImport Name="getSerBill" ReturnType="Collection(ApartmentModel.getSerBill_Result)" />
+          <EntitySet Name="tblPermission" EntityType="ApartmentModel.tblPermission" />
+          <EntitySet Name="tblPerRelationship" EntityType="ApartmentModel.tblPerRelationship" />
+          <EntitySet Name="tblUser" EntityType="ApartmentModel.tblUser" />
+          <AssociationSet Name="FK__tblPerRel__idPer__1BC821DD" Association="ApartmentModel.FK__tblPerRel__idPer__1BC821DD">
+            <End Role="tblPermission" EntitySet="tblPermission" />
+            <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPerRel__idUse__1AD3FDA4" Association="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblPerRelationship" EntitySet="tblPerRelationship" />
+          </AssociationSet>
+          <FunctionImport Name="searchApartByIdOrApart" ReturnType="Collection(ApartmentModel.searchApartByIdOrApart_Result)">
+            <Parameter Name="apartId" Mode="In" Type="String" />
+            <Parameter Name="familyId" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="getAparment_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getApart_Result">
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getEmployee_Result">
+          <Property Type="Int32" Name="empId" Nullable="false" />
+          <Property Type="String" Name="empName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="gender" Nullable="true" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+          <Property Type="DateTime" Name="dob" Nullable="true" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="departmentId" Nullable="true" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="getFamily_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="numberMember" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getMember_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="memberId" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="gender" Nullable="true" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="dob" Nullable="true" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getPermission_Result">
+          <Property Type="Int32" Name="permissionId" Nullable="false" />
+          <Property Type="String" Name="permissionName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="permissionAccess" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="getUser_Result">
+          <Property Type="Int32" Name="userId" Nullable="false" />
+          <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getUserLogin_Result">
+          <Property Type="Int32" Name="userId" Nullable="false" />
+          <Property Type="String" Name="uuid" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="pwd" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchFamily_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="memberId" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="gender" Nullable="true" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="identityNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="dob" Nullable="true" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="searchApartment_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchApart_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchApartById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchFamilyById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="numberMember" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchFamilyByid1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="familyId" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="familyName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="numberMember" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getContract_Result">
+          <Property Type="Int32" Name="ContractId" Nullable="false" />
+          <Property Type="String" Name="ContractName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+          <Property Type="Int32" Name="empId" Nullable="true" />
+          <Property Type="String" Name="limitation" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="signDay" Nullable="true" />
+          <Property Type="String" Name="content" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="searchContractByName_Result">
+          <Property Type="Int32" Name="contractId" Nullable="false" />
+          <Property Type="String" Name="contractName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+          <Property Type="Int32" Name="empId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblApartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apartId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="area" Type="Double" />
+          <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="familyId" Type="Int32" />
+          <NavigationProperty Name="tblFamily" Relationship="ApartmentModel.FK__tblApartm__famil__2610A626" FromRole="tblApartment" ToRole="tblFamily" />
+          <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__famil__24E777C3" FromRole="tblApartment" ToRole="tblContract" />
+          <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__apart__370627FE" FromRole="tblApartment" ToRole="tblServiceBill" />
+        </EntityType>
+        <EntityType Name="tblContract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="familyId" Type="Int32" />
+          <Property Name="empId" Type="Int32" />
+          <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblContra__famil__24E777C3" FromRole="tblContract" ToRole="tblApartment" />
+          <NavigationProperty Name="tblEmployee" Relationship="ApartmentModel.FK__tblContra__empId__25DB9BFC" FromRole="tblContract" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblContractDetail" Relationship="ApartmentModel.FK__tblContra__contr__2B947552" FromRole="tblContract" ToRole="tblContractDetail" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Boolean" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="departmentId" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__empId__25DB9BFC" FromRole="tblEmployee" ToRole="tblContract" />
+          <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__empId__37FA4C37" FromRole="tblEmployee" ToRole="tblServiceBill" />
+        </EntityType>
+        <EntityType Name="tblFamily">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familyId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="familyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="numberMember" Type="Int32" />
+          <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblApartm__famil__2610A626" FromRole="tblFamily" ToRole="tblApartment" />
+          <NavigationProperty Name="tblMember" Relationship="ApartmentModel.FK__tblMember__famil__12FDD1B2" FromRole="tblFamily" ToRole="tblMember" />
+        </EntityType>
+        <EntityType Name="tblMember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Boolean" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="identityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="familyId" Type="Int32" />
+          <NavigationProperty Name="tblFamily" Relationship="ApartmentModel.FK__tblMember__famil__12FDD1B2" FromRole="tblMember" ToRole="tblFamily" />
+        </EntityType>
+        <Association Name="FK__tblApartm__famil__2610A626">
+          <End Type="ApartmentModel.tblFamily" Role="tblFamily" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFamily">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblApartment">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblContra__famil__24E777C3">
+          <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApartment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblContract">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblContra__empId__25DB9BFC">
+          <End Type="ApartmentModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="tblContract">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMember__famil__12FDD1B2">
+          <End Type="ApartmentModel.tblFamily" Role="tblFamily" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFamily">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="familyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblContractDetail">
+          <Key>
+            <PropertyRef Name="contDetailId" />
+          </Key>
+          <Property Name="contDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="limitation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="signDay" Type="DateTime" Precision="0" />
+          <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="contractId" Type="Int32" />
+          <NavigationProperty Name="tblContract" Relationship="ApartmentModel.FK__tblContra__contr__2B947552" FromRole="tblContractDetail" ToRole="tblContract" />
+        </EntityType>
+        <Association Name="FK__tblContra__contr__2B947552">
+          <End Type="ApartmentModel.tblContract" Role="tblContract" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblContractDetail" Role="tblContractDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContract">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="tblContractDetail">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="searchContractDetailsById_Result">
+          <Property Type="Int32" Name="contDetailId" Nullable="false" />
+          <Property Type="String" Name="limitation" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="signDay" Nullable="true" />
+          <Property Type="String" Name="content" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="contractId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblService">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="serName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="tblServiceBill" Relationship="ApartmentModel.FK__tblServic__serId__38EE7070" FromRole="tblService" ToRole="tblServiceBill" />
+        </EntityType>
+        <EntityType Name="tblServiceBill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="serBillName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Double" />
+          <Property Name="datePrint" Type="DateTime" Precision="3" />
+          <Property Name="empId" Type="Int32" />
+          <Property Name="apartId" Type="Int32" />
+          <Property Name="serId" Type="Int32" />
+          <NavigationProperty Name="tblApartment" Relationship="ApartmentModel.FK__tblServic__apart__370627FE" FromRole="tblServiceBill" ToRole="tblApartment" />
+          <NavigationProperty Name="tblEmployee" Relationship="ApartmentModel.FK__tblServic__empId__37FA4C37" FromRole="tblServiceBill" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblService" Relationship="ApartmentModel.FK__tblServic__serId__38EE7070" FromRole="tblServiceBill" ToRole="tblService" />
+        </EntityType>
+        <Association Name="FK__tblServic__apart__370627FE">
+          <End Type="ApartmentModel.tblApartment" Role="tblApartment" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblApartment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="apartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblServic__empId__37FA4C37">
+          <End Type="ApartmentModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblServic__serId__38EE7070">
+          <End Type="ApartmentModel.tblService" Role="tblService" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblServiceBill" Role="tblServiceBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblService">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblServiceBill">
+              <PropertyRef Name="serId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getSerBill_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="serBillName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="total" Nullable="true" />
+          <Property Type="DateTime" Name="datePrint" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="empId" Nullable="true" />
+          <Property Type="Int32" Name="apartId" Nullable="true" />
+          <Property Type="Int32" Name="serId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblPermission">
+          <Key>
+            <PropertyRef Name="permissionId" />
+          </Key>
+          <Property Name="permissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permissionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="permissionAccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPermission" ToRole="tblPerRelationship" />
+        </EntityType>
+        <EntityType Name="tblPerRelationship">
+          <Key>
+            <PropertyRef Name="idRel" />
+          </Key>
+          <Property Name="idRel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUserRel" Type="Int32" />
+          <Property Name="idPerRel" Type="Int32" />
+          <NavigationProperty Name="tblPermission" Relationship="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" FromRole="tblPerRelationship" ToRole="tblPermission" />
+          <NavigationProperty Name="tblUser" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblPerRelationship" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uuid" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tblPerRelationship" Relationship="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" FromRole="tblUser" ToRole="tblPerRelationship" />
+        </EntityType>
+        <Association Name="FK__tblPerRel__idPer__1BC821DD">
+          <End Type="ApartmentModel.tblPermission" Role="tblPermission" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermission">
+              <PropertyRef Name="permissionId" />
+            </Principal>
+            <Dependent Role="tblPerRelationship">
+              <PropertyRef Name="idPerRel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPerRel__idUse__1AD3FDA4">
+          <End Type="ApartmentModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="ApartmentModel.tblPerRelationship" Role="tblPerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="tblPerRelationship">
+              <PropertyRef Name="idUserRel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="searchApartByIdOrApart_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="apartId" Nullable="false" MaxLength="5" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Double" Name="area" Nullable="true" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="familyId" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ApartmentModelStoreContainer" CdmEntityContainer="Apartment">
+          <FunctionImportMapping FunctionImportName="deleteApartment" FunctionName="ApartmentModel.Store.deleteApartment" />
+          <FunctionImportMapping FunctionImportName="deleteEmployee" FunctionName="ApartmentModel.Store.deleteEmployee" />
+          <FunctionImportMapping FunctionImportName="deleteFamily" FunctionName="ApartmentModel.Store.deleteFamily" />
+          <FunctionImportMapping FunctionImportName="deleteMember" FunctionName="ApartmentModel.Store.deleteMember" />
+          <FunctionImportMapping FunctionImportName="getAparment" FunctionName="ApartmentModel.Store.getAparment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getAparment_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getEmployee" FunctionName="ApartmentModel.Store.getEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getEmployee_Result">
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="empName" ColumnName="empName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getFamily" FunctionName="ApartmentModel.Store.getFamily">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getFamily_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+                <ScalarProperty Name="numberMember" ColumnName="numberMember" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getMaxIdEmp" FunctionName="ApartmentModel.Store.getMaxIdEmp" />
+          <FunctionImportMapping FunctionImportName="getMember" FunctionName="ApartmentModel.Store.getMember">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getMember_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPermission" FunctionName="ApartmentModel.Store.getPermission">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getPermission_Result">
+                <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+                <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+                <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUser" FunctionName="ApartmentModel.Store.getUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getUser_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="uuid" ColumnName="uuid" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUserLogin" FunctionName="ApartmentModel.Store.getUserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getUserLogin_Result">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="uuid" ColumnName="uuid" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertApartment" FunctionName="ApartmentModel.Store.insertApartment" />
+          <FunctionImportMapping FunctionImportName="insertEmployee" FunctionName="ApartmentModel.Store.insertEmployee" />
+          <FunctionImportMapping FunctionImportName="insertFamily" FunctionName="ApartmentModel.Store.insertFamily" />
+          <FunctionImportMapping FunctionImportName="insertMember" FunctionName="ApartmentModel.Store.insertMember" />
+          <FunctionImportMapping FunctionImportName="searchFamily" FunctionName="ApartmentModel.Store.searchFamily">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchFamily_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ApartmentModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ApartmentModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ApartmentModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ApartmentModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ApartmentModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ApartmentModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ApartmentModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="updateApartment" FunctionName="ApartmentModel.Store.updateApartment" />
+          <FunctionImportMapping FunctionImportName="updateEmployee" FunctionName="ApartmentModel.Store.updateEmployee" />
+          <FunctionImportMapping FunctionImportName="updateFamily" FunctionName="ApartmentModel.Store.updateFamily" />
+          <FunctionImportMapping FunctionImportName="updateMember" FunctionName="ApartmentModel.Store.updateMember" />
+          <FunctionImportMapping FunctionImportName="searchApart" FunctionName="ApartmentModel.Store.searchApart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchApart_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="searchApartById" FunctionName="ApartmentModel.Store.searchApartById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchApartById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="searchFamilyByid1" FunctionName="ApartmentModel.Store.searchFamilyByid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchFamilyByid1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+                <ScalarProperty Name="numberMember" ColumnName="numberMember" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteContract" FunctionName="ApartmentModel.Store.deleteContract" />
+          <FunctionImportMapping FunctionImportName="deleteContractDetails" FunctionName="ApartmentModel.Store.deleteContractDetails" />
+          <FunctionImportMapping FunctionImportName="getContract" FunctionName="ApartmentModel.Store.getContract">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getContract_Result">
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="ContractName" ColumnName="ContractName" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="limitation" ColumnName="limitation" />
+                <ScalarProperty Name="signDay" ColumnName="signDay" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertContract" FunctionName="ApartmentModel.Store.insertContract" />
+          <FunctionImportMapping FunctionImportName="insertContractDetails" FunctionName="ApartmentModel.Store.insertContractDetails" />
+          <FunctionImportMapping FunctionImportName="updateContract" FunctionName="ApartmentModel.Store.updateContract" />
+          <FunctionImportMapping FunctionImportName="updateContractDetails" FunctionName="ApartmentModel.Store.updateContractDetails" />
+          <FunctionImportMapping FunctionImportName="searchContractByName" FunctionName="ApartmentModel.Store.searchContractByName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchContractByName_Result">
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ApartmentModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblApartment">
+            <EntityTypeMapping TypeName="ApartmentModel.tblApartment">
+              <MappingFragment StoreEntitySet="tblApartment">
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContract">
+            <EntityTypeMapping TypeName="ApartmentModel.tblContract">
+              <MappingFragment StoreEntitySet="tblContract">
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployee">
+            <EntityTypeMapping TypeName="ApartmentModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="empName" ColumnName="empName" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFamily">
+            <EntityTypeMapping TypeName="ApartmentModel.tblFamily">
+              <MappingFragment StoreEntitySet="tblFamily">
+                <ScalarProperty Name="numberMember" ColumnName="numberMember" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMember">
+            <EntityTypeMapping TypeName="ApartmentModel.tblMember">
+              <MappingFragment StoreEntitySet="tblMember">
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContractDetail">
+            <EntityTypeMapping TypeName="ApartmentModel.tblContractDetail">
+              <MappingFragment StoreEntitySet="tblContractDetail">
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="signDay" ColumnName="signDay" />
+                <ScalarProperty Name="limitation" ColumnName="limitation" />
+                <ScalarProperty Name="contDetailId" ColumnName="contDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="searchContractDetailsById" FunctionName="ApartmentModel.Store.searchContractDetailsById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchContractDetailsById_Result">
+                <ScalarProperty Name="contDetailId" ColumnName="contDetailId" />
+                <ScalarProperty Name="limitation" ColumnName="limitation" />
+                <ScalarProperty Name="signDay" ColumnName="signDay" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblService">
+            <EntityTypeMapping TypeName="ApartmentModel.tblService">
+              <MappingFragment StoreEntitySet="tblService">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="serName" ColumnName="serName" />
+                <ScalarProperty Name="serId" ColumnName="serId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblServiceBill">
+            <EntityTypeMapping TypeName="ApartmentModel.tblServiceBill">
+              <MappingFragment StoreEntitySet="tblServiceBill">
+                <ScalarProperty Name="serId" ColumnName="serId" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="datePrint" ColumnName="datePrint" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="serBillName" ColumnName="serBillName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getSerBill" FunctionName="ApartmentModel.Store.getSerBill">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.getSerBill_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="serBillName" ColumnName="serBillName" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="datePrint" ColumnName="datePrint" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="serId" ColumnName="serId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblPermission">
+            <EntityTypeMapping TypeName="ApartmentModel.tblPermission">
+              <MappingFragment StoreEntitySet="tblPermission">
+                <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+                <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+                <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPerRelationship">
+            <EntityTypeMapping TypeName="ApartmentModel.tblPerRelationship">
+              <MappingFragment StoreEntitySet="tblPerRelationship">
+                <ScalarProperty Name="idPerRel" ColumnName="idPerRel" />
+                <ScalarProperty Name="idUserRel" ColumnName="idUserRel" />
+                <ScalarProperty Name="idRel" ColumnName="idRel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="ApartmentModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="uuid" ColumnName="uuid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="searchApartByIdOrApart" FunctionName="ApartmentModel.Store.searchApartByIdOrApart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ApartmentModel.searchApartByIdOrApart_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="apartId" ColumnName="apartId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="familyId" ColumnName="familyId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

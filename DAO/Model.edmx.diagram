@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc65acdaae014b93ac269719543a07f7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ApartmentModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ApartmentModel.tblApartment" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="ApartmentModel.tblContract" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="ApartmentModel.tblEmployee" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="ApartmentModel.tblFamily" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="ApartmentModel.tblMember" Width="1.5" PointX="3" PointY="4.875" />
+        <AssociationConnector Association="ApartmentModel.FK__tblApartm__famil__2610A626" />
+        <AssociationConnector Association="ApartmentModel.FK__tblContra__famil__24E777C3" />
+        <AssociationConnector Association="ApartmentModel.FK__tblContra__empId__25DB9BFC" />
+        <AssociationConnector Association="ApartmentModel.FK__tblMember__famil__12FDD1B2" />
+        <EntityTypeShape EntityType="ApartmentModel.tblContractDetail" Width="1.5" PointX="7.5" PointY="1.625" />
+        <AssociationConnector Association="ApartmentModel.FK__tblContra__contr__2B947552" />
+        <EntityTypeShape EntityType="ApartmentModel.tblService" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ApartmentModel.tblServiceBill" Width="1.5" PointX="12.625" PointY="5" />
+        <AssociationConnector Association="ApartmentModel.FK__tblServic__apart__370627FE" />
+        <AssociationConnector Association="ApartmentModel.FK__tblServic__empId__37FA4C37" />
+        <AssociationConnector Association="ApartmentModel.FK__tblServic__serId__38EE7070" />
+        <EntityTypeShape EntityType="ApartmentModel.tblPermission" Width="1.5" PointX="5.375" PointY="11" />
+        <EntityTypeShape EntityType="ApartmentModel.tblPerRelationship" Width="1.5" PointX="7.625" PointY="10.875" />
+        <EntityTypeShape EntityType="ApartmentModel.tblUser" Width="1.5" PointX="5.375" PointY="7.875" />
+        <AssociationConnector Association="ApartmentModel.FK__tblPerRel__idPer__1BC821DD" />
+        <AssociationConnector Association="ApartmentModel.FK__tblPerRel__idUse__1AD3FDA4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

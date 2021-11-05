@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApartmentModelStoreContainer" CdmEntityContainer="Apartment">
+    <FunctionImportMapping FunctionImportName="getAparment" FunctionName="ApartmentModel.Store.getAparment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getAparment_Result">
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getEmployee" FunctionName="ApartmentModel.Store.getEmployee">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getEmployee_Result">
+          <ScalarProperty Name="empId" ColumnName="empId" />
+          <ScalarProperty Name="empName" ColumnName="empName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getPermission" FunctionName="ApartmentModel.Store.getPermission">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getPermission_Result">
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+          <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getUser" FunctionName="ApartmentModel.Store.getUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getUser_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getUserLogin" FunctionName="ApartmentModel.Store.getUserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getUserLogin_Result">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertEmployee" FunctionName="ApartmentModel.Store.insertEmployee" />
+    <FunctionImportMapping FunctionImportName="getMaxIdEmp" FunctionName="ApartmentModel.Store.getMaxIdEmp" />
+    <FunctionImportMapping FunctionImportName="updateEmployee" FunctionName="ApartmentModel.Store.updateEmployee" />
+    <FunctionImportMapping FunctionImportName="deleteEmployee" FunctionName="ApartmentModel.Store.deleteEmployee" />
+    <FunctionImportMapping FunctionImportName="getFamily" FunctionName="ApartmentModel.Store.getFamily">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getFamily_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="familyName" ColumnName="familyName" />
+          <ScalarProperty Name="numberMember" ColumnName="numberMember" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getMember" FunctionName="ApartmentModel.Store.getMember">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getMember_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="deleteFamily" FunctionName="ApartmentModel.Store.deleteFamily" />
+    <FunctionImportMapping FunctionImportName="insertFamily" FunctionName="ApartmentModel.Store.insertFamily" />
+    <FunctionImportMapping FunctionImportName="updateFamily" FunctionName="ApartmentModel.Store.updateFamily" />
+    <FunctionImportMapping FunctionImportName="searchFamily" FunctionName="ApartmentModel.Store.searchFamily">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.searchFamily_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="deleteMember" FunctionName="ApartmentModel.Store.deleteMember" />
+    <FunctionImportMapping FunctionImportName="insertMember" FunctionName="ApartmentModel.Store.insertMember" />
+    <FunctionImportMapping FunctionImportName="updateMember" FunctionName="ApartmentModel.Store.updateMember" />
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ApartmentModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContract">
+      <EntityTypeMapping TypeName="ApartmentModel.tblContract">
+        <MappingFragment StoreEntitySet="tblContract">
+          <ScalarProperty Name="empId" ColumnName="empId" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="contractType" ColumnName="contractType" />
+          <ScalarProperty Name="contractName" ColumnName="contractName" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractDetail">
+      <EntityTypeMapping TypeName="ApartmentModel.tblContractDetail">
+        <MappingFragment StoreEntitySet="tblContractDetail">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="signDay" ColumnName="signDay" />
+          <ScalarProperty Name="limitation" ColumnName="limitation" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="contDetailId" ColumnName="contDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEmployee">
+      <EntityTypeMapping TypeName="ApartmentModel.tblEmployee">
+        <MappingFragment StoreEntitySet="tblEmployee">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="empName" ColumnName="empName" />
+          <ScalarProperty Name="empId" ColumnName="empId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFamily">
+      <EntityTypeMapping TypeName="ApartmentModel.tblFamily">
+        <MappingFragment StoreEntitySet="tblFamily">
+          <ScalarProperty Name="numberMember" ColumnName="numberMember" />
+          <ScalarProperty Name="familyName" ColumnName="familyName" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMember">
+      <EntityTypeMapping TypeName="ApartmentModel.tblMember">
+        <MappingFragment StoreEntitySet="tblMember">
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPermission">
+      <EntityTypeMapping TypeName="ApartmentModel.tblPermission">
+        <MappingFragment StoreEntitySet="tblPermission">
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+          <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerRelationship">
+      <EntityTypeMapping TypeName="ApartmentModel.tblPerRelationship">
+        <MappingFragment StoreEntitySet="tblPerRelationship">
+          <ScalarProperty Name="idPerRel" ColumnName="idPerRel" />
+          <ScalarProperty Name="idUserRel" ColumnName="idUserRel" />
+          <ScalarProperty Name="idRel" ColumnName="idRel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="ApartmentModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="deleteApartment" FunctionName="ApartmentModel.Store.deleteApartment" />
+    <FunctionImportMapping FunctionImportName="insertApartment" FunctionName="ApartmentModel.Store.insertApartment" />
+    <FunctionImportMapping FunctionImportName="updateApartment" FunctionName="ApartmentModel.Store.updateApartment" />
+    <FunctionImportMapping FunctionImportName="getApart" FunctionName="ApartmentModel.Store.getApart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ApartmentModel.getApart_Result">
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tblApartment">
+      <EntityTypeMapping TypeName="ApartmentModel.tblApartment">
+        <MappingFragment StoreEntitySet="tblApartment">
+          <ScalarProperty Name="familyId" ColumnName="familyId" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="apartId" ColumnName="apartId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
